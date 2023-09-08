@@ -114,7 +114,7 @@ def test_student_rubric_completeness(student_rubric: dict):
 def test_correctly_formatted_final_output(exam_scores: dict) -> bool:
     """Tests if the final output is correctly formatted."""
     try:
-        assert all(key in exam_scores for key in ['student_evaluation', 'student_score'])
+        assert all(key in exam_scores for key in ['student_evaluation', 'student_score', 'student_feedback'])
         return True
     except Exception as e:
         print(f"Exception on exam score: {e}")

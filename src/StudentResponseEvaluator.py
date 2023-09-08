@@ -86,7 +86,11 @@ class StudentResponseEvaluator:
         STUDENT RUBRIC ["Values"]. 
         11. Output a single VALID json example provided below. Do not return any other text that is not this json
         Example output
-        {{{{ 'student_evaluation': "Doesn't meet standard" , 'student_score': 0 }}}}
+        {{{{ 'student_evaluation': "Doesn't meet standard" , 'student_score': 0 , 
+        'student_feedback': "This student response failed to extract a direct quote from the reading passage. 
+        To achieve a better score the student must find one or more sentences from the reading that support their
+        argument and include them in the response."
+        }}}}
         
         """
 
@@ -95,7 +99,11 @@ class StudentResponseEvaluator:
         VALID. Do not include any line breaks in your response.
 
                Output Example
-               {{{{"student_evaluation": "Meets or exceeds standard", "student_score": 1}}}}
+               {{{{"student_evaluation": "Meets or exceeds standard", "student_score": 1,
+               'student_feedback': "This student response failed to extract a direct quote from the reading passage. 
+                To achieve a better score the student must find one or more sentences from the reading that support their
+                    argument and include them in the response."
+               }}}}
 
 
                INPUT
