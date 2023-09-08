@@ -8,7 +8,9 @@ from langchain.chains import LLMChain, SequentialChain
 
 
 class RandInputGenerator:
-    def __init__(self, model="gpt-3.5-turbo"):
+    DEFAULT_MODEL = "gpt-3.5-turbo"
+    TEMPLATES_PATH = 'templates/RandInputGenerator'
+    def __init__(self, model=DEFAULT_MODEL):
         """
             Initializes the random input generator.
 
@@ -17,6 +19,7 @@ class RandInputGenerator:
             """
         # Load environment configurations
         self._load_environment()
+        self.templates = self._load_templates()
         self.llm = ChatOpenAI(temperature=0.9, model=model)
         self.df_path = '../data/CCSS_standards_dataframe.pkl'
         self.df = pd.read_pickle(self.df_path)
@@ -24,6 +27,26 @@ class RandInputGenerator:
     def _load_environment(self):
         """Load environment variables from the .env file."""
         load_dotenv(find_dotenv())
+
+    def _load_template(self, filename):
+        """
+        Load a specific template based on the given filename.
+
+        :param filename: str, name of the template file to be loaded.
+        :return: str, content of the template file.
+        """
+        with open(os.path.join(self.TEMPLATES_PATH, filename), 'r') as file:
+            return file.read()
+
+    def _load_templates(self):
+        """
+        Load all the necessary templates for content generation.
+
+        :return: dict, mapping of template names to their content.
+        """
+        return {
+            "topic_generator": self._load_template("topic_generator_template.txt")
+        }
 
     def _get_random_topic(self):
         """
@@ -38,7 +61,7 @@ class RandInputGenerator:
         Please keep your answer to 5 words or less.
         """
         generate_topic = LLMChain(llm=self.llm,
-                                  prompt=ChatPromptTemplate.from_template(prompt),
+                                  prompt=ChatPromptTemplate.from_template(self.templates["topic_generator"]),
                                   output_key="topic")
         randomness = random.random()
         overall_chain = SequentialChain(

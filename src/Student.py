@@ -27,10 +27,7 @@ class Student:
 if __name__ == "__main__":
     try:
         # Create a Student object
-        student = Student(grade_level="9-10", skill_level="Advanced")
+        student = Student(grade_level="9-10", skill_level="Meets or exceeds standard")
     except ValueError as e:
         print(e)
 
-    # Create a valid Student object
-    valid_student = Student(grade_level="9-10", skill_level="Meets or exceeds standard")
-    print(valid_student)

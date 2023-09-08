@@ -15,11 +15,38 @@ FILENAME = 'StudentSimulator_take_exam_output.txt'
 
 class StudentResponseEvaluator:
     DEFAULT_MODEL = "gpt-3.5-turbo"
+    TEMPLATES_PATH = 'templates/StudentResponseEvaluator'
 
-    def __init__(self):
+    def __init__(self, model=DEFAULT_MODEL):
         # Load environment variables from the .env file.
+        self._load_environment()
+        self.templates = self._load_templates()
+        self.llm = ChatOpenAI(temperature=0.9, model=model)  # Initialize LLM mode
+
+
+    def _load_environment(self):
+        """Load environment variables from the .env file."""
         load_dotenv(find_dotenv())
-        self.llm = ChatOpenAI(temperature=0.9, model=self.DEFAULT_MODEL)  # Initialize LLM mode
+    def _load_template(self, filename):
+        """
+        Load a specific template based on the given filename.
+
+        :param filename: str, name of the template file to be loaded.
+        :return: str, content of the template file.
+        """
+        with open(os.path.join(self.TEMPLATES_PATH, filename), 'r') as file:
+            return file.read()
+
+    def _load_templates(self):
+        """
+        Load all the necessary templates for content generation.
+
+        :return: dict, mapping of template names to their content.
+        """
+        return {
+            "generate_student_response": self._load_template("generate_student_response_template.txt"),
+            "format_output": self._load_template("format_output_template.txt")
+        }
 
     def evaluate(self, data):
         # Validate required fields
@@ -39,83 +66,12 @@ class StudentResponseEvaluator:
     def _get_student_score(self, student_reading, student_question, student_response, student_rubric):
         # Here, you'll use the LLM to compare the student_response with the examples and definitions in the student_rubric
 
-        prompt_template = """
-        You are a teacher evaluating an answer a student gave in your class. 
-        
-        The student was shown STUDENT READING and asked to respond to STUDENT QUESTION.
-        
-        Now compare their response in STUDENT RESPONSE to the rubric provided in STUDENT RUBRIC and given the student 
-        a valuation.
-        
-        STUDENT READING
-        ###
-        {student_reading}
-        ###
-        
-        STUDENT QUESTION
-        ###
-        {student_question}
-        ###
-        
-        STUDENT RESPONSE
-        ###
-        {student_response}
-        ###
-        
-        STUDENT RUBRIC
-        ###
-        {student_rubric}
-        ###
-        
-        Use the following procedure to complete the task:
-        1. Read STUDENT READING
-        2. Read STUDENT QUESTION
-        3. Read STUDENT RESPONSE
-        4. The valuation option will be keys in the Values dict in the STUDENT RUBRIC. 
-        Example: "Meets or exceeds standard", "Partially meets standard", "Doesn't meet standard" 
-        What are the valuation options in this rubric? 
-        5. Read the STUDENT RUBRIC ["Definitions"] for each of the valuations
-        6. Now compare the STUDENT RESPONSE to the STUDENT RUBRIC ["Examples"]. Keeping the definitions you read in
-        step 5 in mind is the STUDENT RESPONSE better, worse, or the same as the example for "Doesn't meet standard" 
-        7. Now compare the STUDENT RESPONSE to the STUDENT RUBRIC ["Examples"]. Keeping the definitions you read in
-        step 5 in mind is the STUDENT RESPONSE better, worse, or the same as the example for "Partially meets standard"
-        8.  Now compare the STUDENT RESPONSE to the STUDENT RUBRIC ["Examples"]. Keeping the definitions you read in
-        step 5 in mind is the STUDENT RESPONSE better, worse, or the same as the example for "Meets or exceeds standard"
-        9. Given your answers for steps 6, 7 and 8 what do you think is the best evaluation of this student response?
-        10. Given the evaluation in step 9 what is the score the student should receive? Scores are found in 
-        STUDENT RUBRIC ["Values"]. 
-        11. Output a single VALID json example provided below. Do not return any other text that is not this json
-        Example output
-        {{{{ 'student_evaluation': "Doesn't meet standard" , 'student_score': 0 , 
-        'student_feedback': "This student response failed to extract a direct quote from the reading passage. 
-        To achieve a better score the student must find one or more sentences from the reading that support their
-        argument and include them in the response."
-        }}}}
-        
-        """
-
-        format_output_template = """Please format the Input below into a single, valid, json. An example of the 
-        output is provide. Do not include any text in your output that is not part of this json. The json MUST BE 
-        VALID. Do not include any line breaks in your response.
-
-               Output Example
-               {{{{"student_evaluation": "Meets or exceeds standard", "student_score": 1,
-               'student_feedback': "This student response failed to extract a direct quote from the reading passage. 
-                To achieve a better score the student must find one or more sentences from the reading that support their
-                    argument and include them in the response."
-               }}}}
-
-
-               INPUT
-               {student_response}
-               """
-
         print("Generating Student Evaluation")
         generate_student_response = LLMChain(llm=self.llm,
-                                             prompt=ChatPromptTemplate.from_template(prompt_template),
+                                             prompt=ChatPromptTemplate.from_template(self.templates["generate_student_response"]),
                                              output_key="student_evaluation")
         format_output = LLMChain(llm=self.llm,
-                                 prompt=ChatPromptTemplate.from_template(format_output_template),
+                                 prompt=ChatPromptTemplate.from_template(self.templates["format_output"]),
                                  output_key='formatted_output')
 
         overall_chain = SequentialChain(

@@ -164,12 +164,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simulate a student taking an exam.')
     parser.add_argument('--topic', type=str, help='Topic for the exam.', default="Baseball")
     parser.add_argument('--ccss_input', type=str, help='CCSS input for the exam.', default="CCSS.ELA-LITERACY.W.4.9")
+    parser.add_argument('--student_grade', type=str, help='student grade that will be taking the exam .',
+                        default="4")
+    parser.add_argument('--student_skill_level', type=str,
+                        help='student skill level that will be taking the exam.',
+                        default="Meets or exceeds standard")
 
     # Parse the command-line arguments
     args = parser.parse_args()
 
     # Use the arguments to create a StudentSimulator object and take the exam
-    simulator = StudentSimulator(topic=args.topic, ccss_input=args.ccss_input)
+    student = Student(grade_level=args.student_grade, skill_level=args.student_skill_level)
+    simulator = StudentSimulator(student=student, topic=args.topic, ccss_input=args.ccss_input)
     result = simulator.take_exam(test=True)
 
     # Display the results

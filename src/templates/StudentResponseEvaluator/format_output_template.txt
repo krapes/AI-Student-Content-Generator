@@ -1,0 +1,15 @@
+"""Please format the Input below into a single, valid, json. An example of the
+        output is provide. Do not include any text in your output that is not part of this json. The json MUST BE
+        VALID. Do not include any line breaks in your response.
+
+               Output Example
+               {{{{"student_evaluation": "Meets or exceeds standard", "student_score": 1,
+               'student_feedback': "This student response failed to extract a direct quote from the reading passage.
+                To achieve a better score the student must find one or more sentences from the reading that support their
+                    argument and include them in the response."
+               }}}}
+
+
+               INPUT
+               {student_response}
+               """

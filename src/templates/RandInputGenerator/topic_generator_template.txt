@@ -1,0 +1,4 @@
+"""Generate an essay topic suitable for grade school children. RANDOM NUMBER {randomness}
+        None is NOT an option. You must give me some topic that you believe school children study.
+        Please keep your answer to 5 words or less.
+        """
