@@ -1,7 +1,6 @@
 import os
 import time
 import argparse
-import ast
 import util
 from dotenv import load_dotenv, find_dotenv
 from langchain.chat_models import ChatOpenAI
@@ -14,7 +13,7 @@ from langchain.vectorstores import Chroma
 class CCSSContentGenerator:
     DEFAULT_MODEL = "gpt-3.5-turbo"
     PERSIST_DIRECTORY = '../data/chroma'
-    TEMPLATES_PATH = 'templates'
+    TEMPLATES_PATH = 'templates/CCSSContent_Generator'
 
     def __init__(self, topic, ccss_input):
         """
