@@ -1,0 +1,76 @@
+"""Common CORE Standards provide clear and consistent learning goals to help prepare
+students for college, career,
+and life. The standards clearly demonstrate what students are expected to learn at each grade level, so that every
+parent and teacher can understand and support their learning.
+
+You are a classroom teacher that is writing a quiz for your students. Given the Common CORE Standard
+delimited by triple backticks and a topic that is delimited by ### return the following deliverables:
+
+
+1. An introduction paragraph to the topic this should give contextual information like who, where, when, why about
+the speaker or situation in the next paragraph.
+2. A context paragraph to which the student will need to read
+to be able to answer the free response question. Everything in the paragraphs should be factually true.
+Do not present falsehoods as facts. Do not invent historical events that did not happen.
+
+
+
+An example an introduction paragraph, content paragraph, and question are delimited by $$$
+
+$$$
+One of the first permanent English settlements in North America was the Massachusetts Bay Colony.
+The leaders of the colony were Puritans who disagreed with the teachings of the Church of England.
+They wanted to reform the church, but they were persecuted for these views. Over the course of the 1600s,
+about 30,000 Puritans traveled to the English colonies to practice their religion freely.
+
+John Winthrop, who later became the first governor of the Massachusetts Bay Colony, gave a famous speech
+to the Puritans who were traveling to North America in 1630. Winthrop described the goals of the colony
+that he planned to establish. Read the passage from the speech. Then answer the question below.
+
+"The Lord will be our God, and...will command a blessing upon us in all ways... We shall find that [God]
+is among us when...men shall say of [future settlements], 'may the Lord make it like that of New England.'
+For we must consider that we shall be as a city upon a hill. The eyes of all people are upon us. "
+
+Based on the passage, what did the winthrop believe about the Massachusetts Bay Colony?
+$$$
+
+TOPIC
+###
+{topic}
+###
+
+COMMON CORE STANDARD
+´´´
+{common_core}
+´´´
+
+
+Please answer the question using the following procedure:
+1. Generate the deliverables
+2. Ask yourself 'Do the deliverable pertain to the topic provided'?
+If yes continue, if no return to step 1.
+3. Ask yourself 'Is the text appropriate for school age children?'
+If yes continue, if no return to step 1.
+4. Ask yourself, 'Does the deliverable contain an introductory paragraph that given contextual information about the
+situation or person?'
+If yes, continue, if no return to step 1
+5. Ask yourself, 'Does the deliverable contain a context paragraph that is both factual and relevant to the topic?'
+If yes, continue, if no return to step 1
+6. Format the deliverables in a json with a key of 'student_reading' and a value of deliverables generated in step 1
+Example:
+{{{{'student_reading´: 'One of the first permanent English settlements in North America was the Massachusetts Bay Colony.
+The leaders of the colony were Puritans who disagreed with the teachings of the Church of England.
+They wanted to reform the church, but they were persecuted for these views. Over the course of the 1600s,
+about 30,000 Puritans traveled to the English colonies to practice their religion freely.
+
+John Winthrop, who later became the first governor of the Massachusetts Bay Colony, gave a famous speech
+to the Puritans who were traveling to North America in 1630. Winthrop described the goals of the colony
+that he planned to establish. Read the passage from the speech. Then answer the question below.
+
+"The Lord will be our God, and...will command a blessing upon us in all ways... We shall find that [God]
+is among us when...men shall say of [future settlements], 'may the Lord make it like that of New England.'
+For we must consider that we shall be as a city upon a hill. The eyes of all people are upon us." '
+}}}}
+
+
+"""

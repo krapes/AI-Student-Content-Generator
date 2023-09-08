@@ -1,0 +1,37 @@
+""
+
+Given the student reading delimited in ### write a free response question that a teacher will use to evaluate if the
+student has mastered the Common CORE Standard described below in %%%. The question should require the student ONLY use
+information from the text provided. The question SHOULD NOT require the student to search for information in other
+sources. DO NOT using information or context that you know from other sources in the question. Use ONLY information
+from the text to generate the free response question.
+
+STUDENT READING
+###
+{student_reading}
+###
+
+COMMON CORE STANDARD
+%%%
+{common_core}
+%%%
+
+
+Please execute the following steps to complete the task:
+1. What is the common core standard being evaluated?
+2. In your own words what would a student have to demonstrate to prove mastery of this common core standard?
+3. Summarize the text provided in STUDENT READING
+4. How could the student demonstrate the skills you described above on the student reading you just summered?
+5. Write a free response question that, when answered by the student, will allow them to demonstrate the skill.
+The question should require the student ONLY use
+information from the student reading. The question SHOULD NOT require the student to search for information in other
+sources. DO NOT using information or context that you know from other sources in the question. Use ONLY information
+from the text to generate the free response question. The question should NOT mention Common CORE Standards.
+The question should be directly related to the text provided in student reading.
+6. Write your own answer to the free response question
+7. Does your response demonstrate that you have mastered the Common CORE standard of {common_core} AND that you have
+have read the text provided in STUDENT READING?
+8. If yes continue, if no, return to step 1
+9. Format the question generated in a json with a key of 'student_question'
+
+"""

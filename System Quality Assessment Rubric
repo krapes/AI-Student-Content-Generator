@@ -1,0 +1,9 @@
+
+Out of 100 simulations:
+
+1. How many produced an error?
+2. How many produced an output that could not be parsed?
+3. How many produced content that was too easy?
+4. How many produced content that was too hard?
+5. How many had a mismatch between the desired standard and the standard listed in the rubric?
+6. How many failed to produce a complete rubric including Examples, Values, and Descriptions?

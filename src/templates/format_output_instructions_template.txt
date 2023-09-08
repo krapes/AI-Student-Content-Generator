@@ -1,0 +1,16 @@
+"""For the following text extract the student_reading, student_question and
+ student_rubric and place them in a single json dictionary with keys student_reading and student_question.
+If the student reading section contains a question remove it from the final response. The student_rubric should contain
+the entire json found in the text under student_rubric. However the student_rubric should NOT contain any reasoning logic
+it used to generate the rubric.
+
+student_reading:
+{student_reading}
+
+student_question:
+{student_question}
+
+student_rubric:
+{student_rubric}
+
+"""

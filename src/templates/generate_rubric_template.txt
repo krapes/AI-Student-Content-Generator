@@ -1,0 +1,102 @@
+"""
+Using the Common CORE Standards provided below delimited by ###. Build a rubric a grade school teacher could use
+to evaluate student responses.
+
+The output of this task will be a single json dictionary that has the same structure as the example below.
+
+
+ ´´´json
+ {{{{
+"Standard": "CCSS.ELA-LITERACY.RL.5.1",
+"Description": "Draw evidence from literary or informational texts to support analysis, reflection, and research.",
+'Skill': 'Writing',
+'Grade': 5
+"Definitions": {{{{
+            "Doesn't meet standard": "Cannot accurately quote from the text or draw inferences",
+            "Partially meets standard": "Quotes some information from the text but lacks inferences",
+            "Meets or exceeds standard": "Accurately quotes from the text and draws inferences"
+                }}}},
+"Values": {{{{
+        "Doesn't meet standard": 0,
+        "Partially meets standard": .5,
+        "Meets or exceeds standard": 1
+         }}}}
+"Examples": {{{{
+        "Doesn't meet standard": "Baseball is a popular sport in the United States played with two teams. It has been enjoyed for a long time and has many famous players. The game involves batting and fielding, and it is played on a field with bases. Baseball is loved by many people and is considered a national pastime in the United States.",
+        "Partially meets standard": "Baseball has become a cherished sport in the United States through its long history and its integration into American culture. The game involves two teams competing against each other, aiming to score more runs by hitting the ball and running around bases. It is played on a grassy field called a diamond, with four bases placed at the corners. Baseball requires skill and strategic thinking from both batters and fielders. It has gained popularity and captured the hearts of many fans across the world, making it a beloved national pastime in the United States.",
+        "Meets or exceeds standard": "Baseball has become a cherished national pastime in the United States due to its long and rich history, deep integration into American culture, and the countless iconic players and memorable moments associated with the sport. Throughout the years, the game's popularity has grown immensely, captivating the hearts of fans from all walks of life. It has become a beloved tradition and an essential part of the fabric of America."
+
+         }}}}
+}}}}
+´´´
+
+
+
+Common CORE
+ ###
+ {common_core}
+ ###
+
+ STUDENT READING
+ %%%
+ {student_reading}
+ %%%
+
+ STUDENT QUESTION
+ !!!
+ {student_question}
+ !!!
+
+
+ Use the following procedure:
+ 1. Create a json dictionary that has the same keys and hierarchy as the example
+ 2. What is the "Standard" given in the Common Core data? Place this in the json dictionary
+ 3. What is the Description given in the Common Core data? Place this in the json dictionary
+ 4. What is the Skill given in the Common Core data? Place this in the json dictionary
+ 5. What is the Grade given in the Common Core data? Place this in the json dictionary
+
+ 6. What is the "Description" and "Skill" for this Common CORE?
+ 7. Use the information gathered in step three to generate Definitions for a student that "Doesn't meet standard",
+ "Partially meets standard", "Meets or exceeds standard"
+ 8. Place the definitions you wrote in step 4 in the json dictionary you created in step 1
+
+ 9. Reread the text provided in STUDENT READING
+ 10. Reread the text provided in STUDENT QUESTION
+ 11. Use the values in Common CORE to determine what "Grade" this standard is intended for.
+ 12. Imagine you are a student in the grade you identified in step 11 that has read the text you summered in step 9
+ and is now answering the question from step 10. Write a response to the question that  completes the
+ "Meets or exceeds standard" definition you wrote in step 7.
+ 13. Place the text you wrote in the previous step into the json dictionary you created in step 1
+
+ 14. Reread the text provided in STUDENT READING
+ 15. Reread the text provided in STUDENT QUESTION
+ 16. Use the values in Common CORE to determine what "Grade" this standard is intended for.
+ 17. Imagine you are a student in the grade you identified in step 16 that has read the text you summered in step 14
+ and is now answering the question from step 16. Write a response to the question that  completes the
+ "Partially meets standard" definition you wrote in step 7.
+ 18. Is this text significantly worse than the text you wrote in step 12?
+ 19. If yes, continue, if no return to step 14. If the answer is no you CANNOT move on to the next step. YOU MUST
+ RETURN TO STEP 14 and try again. Don't give up, you will get it on the next try.
+ 20. Place the text you wrote in step 17 into the json dictionary you created in step 1
+
+ 21. Reread the text provided in STUDENT READING
+ 22. Reread the text provided in STUDENT QUESTION
+ 23. Use the values in Common CORE to determine what "Grade" this standard is intended for.
+ 24. Imagine you are a student in the grade you identified in step 23 that has read the text you summered in step 21
+ and is now answering the question from step 22. Write a response to the question that  completes the
+ "Doesn't meet standard" definition you wrote in step 7.
+ 25. Is this text significantly worse than the text you wrote in step 16?
+ 26. If yes, continue, if no return to step 21. If the answer is no you CANNOT move on to the next step. YOU MUST
+ RETURN TO STEP 21. Don't give up, you will get it on the next try.
+ 27. Place the text you wrote into the json dictionary you created in step 1
+
+ 28. In the json dictionary insert Values using the following logic:
+ The Value for "Meets or exceeds standard" == 1
+ The Value for "Partially meets standard" == 0.5
+ The Value for "Doesn't meet standard" == 0
+
+Congratulations you finished the task, output the json dictionary you created in the procedure
+and the logic reasoning you did while executing the procedure.
+Do not forget to output your results for every step in the procedure.
+
+"""
